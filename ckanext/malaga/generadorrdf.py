@@ -4,13 +4,11 @@
 # @email        datosabiertos@malaga.eu
 #
 #
-
+import re
 import ckan.plugins as p
 from ckan.lib.base import BaseController
 
 import federador as fed
-
-
 
 # imports used on rdf render
 #import ckan.lib.accept as accept
@@ -30,8 +28,10 @@ class GenerarRDF(BaseController):
 		import os
 		import sys
 		
-		datardf = render(template, loader_class=None)				
-		datardf = datardf.encode('utf-8').replace(' lang="es" ',' ')		
+		datardf = render(template, loader_class=None)					
+		datardf = datardf.encode('utf-8')	
+		patron = re.compile(" lang=\"..\" ")  
+		datardf = patron.sub(" ",datardf)		
 		
 		try:
 			with open(fname, 'w') as f:
