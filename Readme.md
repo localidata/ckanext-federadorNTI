@@ -13,8 +13,6 @@ Esta extensión actualmente sólo tiene la funcionalidad de Federación.
 
 Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
-Instalación de ckanext-malaga
-
 #### Descarga y configuración de la extensión
 
 - activamos entorno: source /usr/lib/ckan/default/bin/activate
@@ -63,7 +61,7 @@ A continuación explicamos todos los parámetros que se utilizan en esta extensi
 
 Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso de tener muchos datos, puede tardar varios minutos en generarse y si se lanzan muchas peticiones podría ser problemático.
 
-Proximamente
+Proximamente ampliaremos esta información.
 
 ### Desinstalación de ckanext-malaga
 
