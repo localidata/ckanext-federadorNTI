@@ -1,5 +1,7 @@
 ![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
 ![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
+
+
 ckanext-malaga
 ==============
 
@@ -58,6 +60,8 @@ A continuación explicamos todos los parámetros que se utilizan en esta extensi
 - ckan_mlg.federador_licenseURI: URL donde se encuentra la página con la licencia de nuestros datos. Ejemplo: http://datosabiertos.localidata.com/pages/aviso-legal
 
 #### Cómo securizar la url del ckan_mlg.federador_process
+
+Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso de tener muchos datos, puede tardar varios minutos en generarse y si se lanzan muchas peticiones podría ser problemático.
 
 Proximamente
 
