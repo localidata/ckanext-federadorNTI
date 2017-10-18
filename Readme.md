@@ -11,21 +11,21 @@ Esta extensión actualmente sólo tiene la funcionalidad de Federación.
 
 Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
-###Instalación de ckanext-malaga
+Instalación de ckanext-malaga
 
-####Descarga de la extensión
+#### Descarga y configuración de la extensión
 
-* activamos entorno: source /usr/lib/ckan/default/bin/activate
-* accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
-* descargamos la extensión: git clone https://github.com/localidata/ckanext-malaga
-* accedemos al directorio donde se ha descargado: cd ckanext-malaga
-* instalamos la extensión: python setup.py develop
-* añadimos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
+- activamos entorno: source /usr/lib/ckan/default/bin/activate
+- accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
+- descargamos la extensión: git clone https://github.com/localidata/ckanext-malaga
+- accedemos al directorio donde se ha descargado: cd ckanext-malaga
+- instalamos la extensión: python setup.py develop
+- añadimos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
         
         ckan.plugins = .... malaga
-* creamos el directorio donde dejar el fichero para federar: mkdir /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
-* cambiamos el usuario del directorio: sudo chown www-data -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
-* cambiamos los permisos del mismo: sudo chmod u+rwx -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
+- creamos el directorio donde dejar el fichero para federar: mkdir /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
+- cambiamos el usuario del directorio: sudo chown www-data -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
+- cambiamos los permisos del mismo: sudo chmod u+rwx -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
 
 Añadimos estas lineas de configuración en el archivo de configuración de CKAN:
 
@@ -37,14 +37,27 @@ ckan_mlg.federador_publisherURI = http://publisherURI.com
 ckan_mlg.federador_startDate = 2017-02-27T09:26:44
 ckan_mlg.federador_licenseURI = http://licenseURI.com
 
+#### Explicación de los parámetros y uso
 
-###Desinstalación de ckanext-malaga
+ckan_mlg.federador_file: fichero final que va contener toda la información para la federación. Se genera cada vez que se finaliza el proceso de federación. La ruta completa debe existir y tener permisos.
+ckan_mlg.federador_template: ruta donde se encuentra la plantilla rdf para generar el RDF que se federará.
+ckan_mlg.federador_process: Url que utilizamos comenzar la generación del fichero. Si escribimos 'generador', la url será: http://datosabiertos.localidata.com/generador
+ckan_mlg.federador_spatialURI: URI espacial que más se aproxima a nuestro municipio o residencia. Ejemplo: http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid
+ckan_mlg.federador_publisherURI: URI de nuestro organismo. Ejemplo: datos.gob.es/recurso/sector-publico/org/Organismo/L01281230
+ckan_mlg.federador_startDate: Fecha de alta en datos.gob.es. El formato debe ser YYYY-MM-DDTHH:MI:SS Ejemplo: 2017-02-27T09:26:44
+ckan_mlg.federador_licenseURI: URL donde se encuentra la página con la licencia de nuestros datos. Ejemplo: http://datosabiertos.localidata.com/pages/aviso-legal
+
+#### Cómo securizar la url del ckan_mlg.federador_process
+
+Proximamente
+
+### Desinstalación de ckanext-malaga
 
 * dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
 * borramos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 
 
-##Licencia:
+## Licencia:
 
 Localidata: El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo o mencionanos en el cabecero o pie de página a modo de reconocimiento a Localidata. Gracias! 
 
