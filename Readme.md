@@ -69,11 +69,13 @@ Proximamente
 
 ## Licencia:
 
-Localidata: El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo o mencionanos en el cabecero o pie de página a modo de reconocimiento a Localidata. Gracias! 
-
 ![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
+
+El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo o mencionanos a modo de reconocimiento. Gracias! 
+
+![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 
 El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo en el cabecero o pie de página a modo de reconocimiento a Datos Abiertos Málaga. Gracias! 
 
-![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
+
 
