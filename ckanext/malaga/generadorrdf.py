@@ -11,6 +11,7 @@ from ckan.lib.base import BaseController
 import federador as fed
 
 
+
 # imports used on rdf render
 #import ckan.lib.accept as accept
 from ckan.lib.base import response
@@ -29,11 +30,12 @@ class GenerarRDF(BaseController):
 		import os
 		import sys
 		
-		datardf = render(template, loader_class=None)
-
+		datardf = render(template, loader_class=None)				
+		datardf = datardf.encode('utf-8').replace(' lang="es" ',' ')		
+		
 		try:
 			with open(fname, 'w') as f:
-				f.write(datardf.encode('utf-8'))
+				f.write(datardf)
 				return p.toolkit.literal("proceso correcto")
 		except IOError, ioe:
 			sys.stderr.write( "Error !!!!! " + str(ioe) + "\n" )
