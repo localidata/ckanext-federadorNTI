@@ -12,7 +12,7 @@ import federador as fed
 
 
 # imports used on rdf render
-import ckan.lib.accept as accept
+#import ckan.lib.accept as accept
 from ckan.lib.base import response
 from ckan.lib.base import (request,
                            render,
