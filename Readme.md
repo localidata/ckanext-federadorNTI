@@ -53,7 +53,7 @@ A continuación explicamos todos los parámetros que se utilizan en esta extensi
 - ckan_mlg.federador_template: ruta donde se encuentra la plantilla rdf para generar el RDF que se federará.
 - ckan_mlg.federador_process: Url que utilizamos comenzar la generación del fichero. Si escribimos 'generador', la url será: http://datosabiertos.localidata.com/generador
 - ckan_mlg.federador_spatialURI: URI espacial que más se aproxima a nuestro municipio o residencia. Ejemplo: http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid
-- ckan_mlg.federador_publisherURI: URI de nuestro organismo. Ejemplo: datos.gob.es/recurso/sector-publico/org/Organismo/L01281230
+- ckan_mlg.federador_publisherURI: URI de nuestro organismo. Ejemplo: http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230
 - ckan_mlg.federador_startDate: Fecha de alta en datos.gob.es. El formato debe ser YYYY-MM-DDTHH:MI:SS Ejemplo: 2017-02-27T09:26:44
 - ckan_mlg.federador_licenseURI: URL donde se encuentra la página con la licencia de nuestros datos. Ejemplo: http://datosabiertos.localidata.com/pages/aviso-legal
 
