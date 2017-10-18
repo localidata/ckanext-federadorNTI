@@ -120,13 +120,6 @@ class malagae(p.SingletonPlugin):
 
 	import pylons.config as config 
 
-# Redefine before_map: include aplicaciones on main menu
-	apl_url_config = config['ckan_mlg.apl_url']                     #loading url ckan must open
-
-	m.connect('aplicaciones', #name of path route
-	'/aplicaciones', #url to map path to
-	controller='ckanext.malaga.controller:AplicacionesController', #controller
-	action='aplicaciones', apl_url=apl_url_config) #controller action (method)
 
 # Redefine before_map: URL /local/generador execute GenerarRDF and generate rdf file used on datos.gob.es federacion
 	federador_fname = config['ckan_mlg.federador_file']             #rdf filename (include path)
