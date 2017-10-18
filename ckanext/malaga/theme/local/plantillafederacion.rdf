@@ -12,24 +12,24 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xmlns:tema="http://datos.gob.es/kos/sector-publico/sector/"
 >
-	<dcat:Catalog rdf:about="http://datos.ayto-arganda.es">
+	<dcat:Catalog rdf:about="${ g.site_url }">
 		<dct:identifier>${ g.site_url }</dct:identifier>
 		<dct:title xml:lang="es">${ g.site_title }</dct:title>
 		<dct:description xml:lang="es">${ g.site_description }</dct:description>
-		<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01280148"/>
+		<dct:publisher rdf:resource="${ h.mlg_publisher_URI() } "/>		
 		<dct:extent>
 			<dct:SizeOrDuration>
 				<rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">${h.mlg_fed_total_resources_size()}</rdf:value>
 				<rdfs:label xml:lang="es">${h.mlg_fed_total_resources_size()} bytes</rdfs:label>
 			</dct:SizeOrDuration>
 		</dct:extent>
-		<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-02-27T09:26:44</dct:issued>
+		<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">${ h.mlg_start_date() }</dct:issued>
 		<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">${ h.mlg_cur_datetime('') }</dct:modified>
 		<dc:language>es</dc:language>
-		<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"/>
+		<dct:spatial rdf:resource="${ h.mlg_spatial_URI() }"/>
 		<dcat:themeTaxonomy rdf:resource="http://datos.gob.es/kos/sector-publico/sector/"/>
 		<foaf:homepage rdf:resource="${ g.site_url }"/>
-		<dct:license rdf:resource="http://datos.ayto-arganda.es/pages/aviso-legal"/>
+		<dct:license rdf:resource="${ h.mlg_license_URI() }"/>
 		<py:for each="ds_list in h.mlg_ds_list()">
 		<py:with vars="ds=h.mlg_ds_resources_list(ds_list)">
 			<py:if test="ds['private']==False">            
@@ -47,11 +47,11 @@
 						<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">${ds['metadata_created'][:19]}</dct:issued>
 						<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">${ds['metadata_modified'][:19]}</dct:modified>
 						<dc:language>es</dc:language>
-						<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01280148"/>
+						<dct:publisher rdf:resource="${ h.mlg_publisher_URI() }"/>
 						<py:if test="len(ds['license_url'])>0">
 							<dct:license rdf:resource="${ds['license_url']}"/>
 						</py:if>
-						<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"/>
+						<dct:spatial rdf:resource="${ h.mlg_spatial_URI() } "/>
 						<dct:valid rdf:datatype="http://www.w3.org/2001/XMLSchema#date"/>
 						<py:for each="rsc_dict in ds['resources']">
 							<dcat:distribution>

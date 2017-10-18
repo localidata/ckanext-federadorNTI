@@ -100,7 +100,24 @@ def mlg_group_list():
 def mlg_organization_list():
 	data_dict = {'all_fields': True} #all_fields returns each group field (name, url, image,...).
 	return toolkit.get_action('organization_list')(data_dict=data_dict)
+	
+def mlg_spatial_URI():	
+	import pylons.config as config 
+	return config['ckan_mlg.federador_spatialURI']
+	
+def mlg_publisher_URI():	
+	import pylons.config as config 
+	return config['ckan_mlg.federador_publisherURI']	
 
+def mlg_start_date():	
+	import pylons.config as config 
+	return config['ckan_mlg.federador_startDate']	
+
+def mlg_license_URI():	
+	import pylons.config as config 
+	return config['ckan_mlg.federador_licenseURI']	
+
+	
 
 class malagae(p.SingletonPlugin):
 
@@ -151,5 +168,9 @@ class malagae(p.SingletonPlugin):
 		'mlg_federador_value':fed.mlg_federador_value,
 		'mlg_ds_list': mlg_ds_list,
 		'mlg_top_tags': mlg_top_tags,
-		'mlg_ds_resources_list': mlg_ds_resources_list
+		'mlg_ds_resources_list': mlg_ds_resources_list,
+		'mlg_spatial_URI': mlg_spatial_URI,
+		'mlg_publisher_URI': mlg_publisher_URI,
+		'mlg_start_date': mlg_start_date,
+		'mlg_license_URI': mlg_license_URI		
 }
