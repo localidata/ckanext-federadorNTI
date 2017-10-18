@@ -1,44 +1,15 @@
-
+![Logo Localidata](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
 ![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 ckanext-malaga
 ==============
 
-El [Portal de Datos Abiertos del Ayuntamiento de Málaga](http://datosabiertos.malaga.eu) se ha implantado a partir de la plataforma CKAN.
+En Localidata hemos modificado la extensión original del [Portal de Datos Abiertos del Ayuntamiento de Málaga](http://datosabiertos.malaga.eu) para la plataforma CKAN.
 
 [CKAN](http://ckan.org) es un portal de código abierto, diseñado y desarrolado para que los gobiernos locales y estatales puedan publicar y compartir su datos abiertos fácilmente. 
 
-Está instalada desde fuentes (http://docs.ckan.org/en/latest/maintaining/installing/install-from-source.html)
+Esta extensión actualmente sólo tiene la funcionalidad de Federación. 
 
-<b>IMPORTANTE:</b>
-<<<<<<< HEAD
-Esta extensión funciona para CKAN 2.3 y 2.4 (CKAN responsive), para versiones anteriores esta versión <b>NO ES COMPATIBLE</b>.
-=======
-Esta extensión funciona para <b>CKAN 2.4 y CKAN 2.3 (CKAN responsive), para versiones anteriores esta versión NO ES COMPATIBLE</b>.
->>>>>>> 4c58729f125c28ace15e97dc0ce2927f1aee523b
-
-Para usar la extensión ckanext-malaga en CKAN 2.2 o anteriores, deberá usar la rama pertinente de este repositorio.
-
-ckanext-malaga es la extensión que hemos desarrollado para adaptar la plataforma a nuestras necesidades. Esto incluye las siguientes funcionalidades.
-
-##
-
-##Instalación y configuración del portal de datos abiertos.
-Los pasos para reproducir el portal de datos abiertos del Ayuntamiento de Málaga son los siguientes:
-* Instalar Ubuntu 14.04.2 en una máquina.
-* Instalar la última versión de CKAN disponible en formato "instalar desde fuente", las instrucciones se encuentran en este enlace [CKAN install from source](http://docs.ckan.org/en/latest/maintaining/installing/install-from-source.html).
-* Seguir los pasos que explicamos a continuación.
-* NOTA: Los iconos de grupos y organizaciones que proporcionamos en este repositorio se corresponde con la categorización requerida según la NTI (http://www.boe.es/boe/dias/2013/03/04/pdfs/BOE-A-2013-2380.pdf) y que son imprescindibles para la federación de los datos en (http://datos.gob.es/catalogo).
-
-##Requisitos
-* ckanext-malaga usa la extesión [ckanext-contacto](https://github.com/damalaga/ckanext-contacto), por lo que tiene que estar instalada también. Esta extensión permite crear un formulario de contacto y ha sido desarrollada por [nuestro equipo](https://github.com/damalaga/)
-
-##Funcionalidades implementadas:
-* Carrusel de la pantalla principal con bootstrap.
-* Federación de datos con datos.gob.es
-* Entrada "aplicaciones" con el listado de aplicaciones que usan nuestros catálogo de datos.
-* Tablero de grupos y organizaciones.
-* Formulario de contacto usando la extensión ckanext-contacto.
-* Modo responsive (compatible para móviles).
+Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
 ###Instalación de ckanext-malaga
 =======
