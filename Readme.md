@@ -1,4 +1,4 @@
-![Logo Localidata](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
+![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
 ![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 ckanext-malaga
 ==============
@@ -12,102 +12,45 @@ Esta extensión actualmente sólo tiene la funcionalidad de Federación.
 Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
 ###Instalación de ckanext-malaga
-=======
-###Descarga de la extensión
 
-* Conectarse a la máquina de CKAN con el usuario de ckan.
-* Ir al directorio de instalación de la extensión (en nuestro caso):
-<p>cd ckan/lib/default/src</p>
-* Clonar la extensión
-<p>git clone https://github.com/damalaga/ckanext-malaga</p>
-* Desplegarla
-<p>python setup.py develop</p>
+####Descarga de la extensión
 
-###Configuración de la extensión
-Añadir en el fichero .ini estas lineas y, a continuacion, reiniciar apache2:
-<pre>
-<code>
-#Añadimos la extension en ckan.plugins
-ckan.plugins = .... malaga
+* activamos entorno: source /usr/lib/ckan/default/bin/activate
+* accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
+* descargamos la extensión: git clone https://github.com/localidata/ckanext-malaga
+* accedemos al directorio donde se ha descargado: cd ckanext-malaga
+* instalamos la extensión: python setup.py develop
+* añadimos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
+        
+        ckan.plugins = .... malaga
+* creamos el directorio donde dejar el fichero para federar: mkdir /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
+* cambiamos el usuario del directorio: sudo chown www-data -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
+* cambiamos los permisos del mismo: sudo chmod u+rwx -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
 
-#indica donde se encuentra la entrada "aplicaciones" del menú, en nuestro caso esta en el home y se llama aplicaciones.html
-ckan_mlg.apl_url = aplicaciones.html 
-#################
-#Configuracion relacionada con la federacion
+Añadimos estas lineas de configuración en el archivo de configuración de CKAN:
 
-ckan_mlg.federador_file = #fichero donde escribimos el fichero rdf federador (escribir ruta absoluta y el nombre del fichero con la extension.
-ckan_mlg.federador_template = #ubicación de plantilla rdf que se usa en la federacion, en nuestro caso es local/plantillafederacion.rdf
-ckan_mlg.federador_process =  #instrucción que lanza el generador de rdf, si queremos que se lance el federador al escribir la URL http://dominio/generador, escribiremos generador
-
-# parametros propios de cada entidad
-# datatime portal published
-ckan_mlg.federador_datetime_pub = #fecha y hora de la publicacion del portal en formato AAAA-MM-DDTHH:MI:SS
-ckan_mlg.federador_publisher = #etiqueta publisher
-ckan_mlg.federador_spatial_res = #etiqueta spatial
-ckan_mlg.federador_theme_tax = #etiqueta themeTaxonomy
-ckan_mlg.license_res = #etiqueta license
-
-#################
-
-#configuracion relacionada con el fichero de licencia
-licenses_group_url = # Fichero de licencias en nuestro caso seria file:///home/ckan/ckan/lib/default/src/ckanext-malaga/ckanext/malaga/public/licencias.json
-</code></pre>
-</code>
-</pre>
+ckan_mlg.federador_file = /usr/lib/ckan/default/src/ckan/ckan/public/recursos/federador.rdf
+ckan_mlg.federador_template = /usr/lib/ckan/default/src/ckanext-malaga/ckanext/malaga/theme/local/plantillafederacion.rdf
+ckan_mlg.federador_process = generador
+ckan_mlg.federador_spatialURI = http://spatialURI.com
+ckan_mlg.federador_publisherURI = http://publisherURI.com
+ckan_mlg.federador_startDate = 2017-02-27T09:26:44
+ckan_mlg.federador_licenseURI = http://licenseURI.com
 
 
-##PROCESO DE FEDERACIÓN:
+###Desinstalación de ckanext-malaga
 
-<b>IMPORTANTE</b>
+* dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
+* borramos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 
-Esta versión de ckanext-malaga contiene las modificaciones oportunas para que se pueda federar los datos en datos.gob.es con CKAN 2.3, teniendo en cuenta que se ha modificaciones la API de CKAN versión 2.3. No podemos garantizar el funcionamiento de la federación en versiones anteriores a CKAN 2.3. 
 
-La feferación en versiones anteriores a CKAN 2.3 debe realizarse con la versión de ckanext-malaga correspondiente.
-
-El proceso que genera el fichero rdf puede llegar a tardar varios minutos, dependiendo del tamaño del catálogo de datos.
-
-Por este motivo, hemos dividido el proceso en dos: en el primero se genera el fichero rdf y en el segundo se muestra el fichero que se ha generado previamente.
-- Generación del fichero rdf: para ello será necesario llamar a la siguiente URL http://dominio/XXXXX, siendo XXXXX la orden que hemos configurado previamente con el parámetros <code>ckan_mlg.federador_process</code>. El resultado se escribe en la ruta y fichero que hemos configurado previamente en <code>ckan_mlg.federador_rdf_write</code> del fichero .ini
-- Obtención del fichero rdf (previamente generado): El fichero se obtiene escribiendo la ruta que hemos configurado previamente en <code>ckan_mlg.federador_file</code>. Esta ruta debe ser accesible vía web y no debe estar dentro del ámbito de ckan, para que el controlador de rdfs que trae CKAN no actúe en la llamada.
-
-##SLIDES DEL CARRUSEL:
-
-El carrusel está implementado con el propio bootstrap que se incluye en la instalación de CKAN.
-La configuración y uso de la misma está hecha según la documentación oficial de la misma.
-
-El carrusel se compone de cinco slides, los tres primeros: recuento de recursos, etiquetas más populares y estadísticas, se generan periódicamente (cada día por ejemplo) mediante un cron que crea un html estático con el contenido del slide. Con esto evitamos consultar la información cada vez que se accede al home del portal.
-El cron tiene las siguientes órdenes:
-<pre>
-<code>
-wget http://URL/home/snippets/get_carousel_tags.html -O /home/ckan/ckan/lib/default/src/ckanext-malaga/ckanext/malaga/theme/templates/home/snippets/carousel_tags.html</code>
-<code>
-wget http://URL/home/snippets/get_carousel_stats.html -O /home/ckan/ckan/lib/default/src/ckanext-malaga/ckanext/malaga/theme/templates/home/snippets/carousel_stats.html</code>
-<code>
-wget http://URL/home/snippets/get_carousel_resources.html -O /home/ckan/ckan/lib/default/src/ckanext-malaga/ckanext/malaga/theme/templates/home/snippets/carousel_resources.html</code>
-</pre>
-
-Siendo get_carousel_XXXX.html el html que recopila la información y carousel_XXXX.html el contenido estático.
-
-NOTA: Una vez instalado esta extensión, hay que ejecutar los tres ficheros html para que se rellenen con información, porque inicialmente están vacíos.
-
-##TABLERO DE GRUPOS Y ORGANIZACIONES:
-
-Inicialmente se recopilan los grupos y organizaciones del portal. Cada grupo/organización tiene dos imágenes de 50x50 píxeles uno con el nombre del grupo/organización y otro fichero con el nombre del grupo/organización terminado en "on".
-
-Las imágenes de los grupos y organizaciones están clasificados según nuestras necesidades, por lo que los iconos sólo aparecen si los grupos y organizaciones existen, en otro caso, no aparecerá ninguna imagen.
-
-## FORMULARIO DE CONTACTO
-Los desarrolladores que usen nuestra API, pueden rellenar un formulario de contacto para que demos de alta su aplicación en nuestra página de "aplicaciones disponibles", para ello, hemos usado una extensión que hemos desarrollado y que está disponible en (https://github.com/damalaga/ckanext-contact)
-
-=======
 ##Licencia:
 
-El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo en el cabecero o pie de página a modo de reconocimiento a Datos abiertos Málaga. Gracias! 
+Localidata: El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo o mencionanos en el cabecero o pie de página a modo de reconocimiento a Localidata. Gracias! 
 
+![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
+
+El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo en el cabecero o pie de página a modo de reconocimiento a Datos Abiertos Málaga. Gracias! 
 
 ![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c58729f125c28ace15e97dc0ce2927f1aee523b
