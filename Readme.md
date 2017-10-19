@@ -37,6 +37,8 @@ Añadimos estas lineas de configuración en el archivo de configuración de CKAN
 - ckan_mlg.federador_startDate = 2017-02-27T09:26:44
 - ckan_mlg.federador_licenseURI = http://licenseURI.com
 
+Solo nos faltaría reiniciar apache para que CKAN cargue la nueva extensión.
+
 #### Explicación de los parámetros y uso
 
 Esta extensión funciona de la siguiente manera:
