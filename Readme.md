@@ -63,10 +63,17 @@ A continuación explicamos todos los parámetros que se utilizan en esta extensi
 
 Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso de tener muchos datos, puede tardar varios minutos en generarse y si se lanzan muchas peticiones podría ser problemático.
 
-Proximamente ampliaremos esta información.
+### Actualización de ckanext-malaga
+
+* activamos entorno: source /usr/lib/ckan/default/bin/activate
+* dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
+* descargamos la extensión actualizada: git pull
+* instalamos la extensión de nuevo: python setup.py develop
+
 
 ### Desinstalación de ckanext-malaga
 
+* activamos entorno: source /usr/lib/ckan/default/bin/activate
 * dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
 * borramos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 

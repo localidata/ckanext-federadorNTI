@@ -32,7 +32,7 @@
 		<dct:license rdf:resource="${ h.mlg_license_URI() }"/>
 		<py:for each="ds_list in h.mlg_ds_list()">
 		<py:with vars="ds=h.mlg_ds_resources_list(ds_list)">
-			<py:if test="ds['type']!='showcase'">
+			<py:if test="ds['type']=='dataset'">
 				<py:if test="ds['private']==False">            
 					<dcat:dataset>
 						<dcat:Dataset rdf:about="${ h.url_for(controller='package',action='read',id=ds['name'], qualified=True)}">
