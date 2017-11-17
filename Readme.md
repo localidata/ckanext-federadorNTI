@@ -1,5 +1,4 @@
-![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
-![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
+![Logo Localidata](https://raw.githubusercontent.com/localidata/ckanext-federadorNTI/master/ckanext/malaga/public/images/logoLocalidata.png)
 
 
 ckanext-federadorNTI
@@ -80,11 +79,11 @@ Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso
 
 ## Licencia:
 
-![Logo Localidata](https://github.com/localidata/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoLocalidata.png)
+![Logo Localidata](https://raw.githubusercontent.com/localidata/ckanext-federadorNTI/master/ckanext/malaga/public/images/logoLocalidata.png)
 
 El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo o mencionanos a modo de reconocimiento. Gracias! 
 
-![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
+![Logo datos abiertos Málaga](https://raw.githubusercontent.com/damalaga/ckanext-malaga/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 
 El código de esta aplicación puede ser reutilizado, modificado y adaptado a las necesidades de los distintos portales de forma libre. Si utilizas nuestro código o parte de él, por favor, incluye nuestro logo en el cabecero o pie de página a modo de reconocimiento a Datos Abiertos Málaga. Gracias! 
 
