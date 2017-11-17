@@ -2,7 +2,7 @@
 ![Logo datos abiertos Málaga](https://github.com/damalaga/ckanext-malaga/blob/master/ckanext/malaga/public/images/logoportaldatosabiertos.png)
 
 
-ckanext-malaga
+ckanext-federadorNTI
 ==============
 
 En Localidata hemos modificado la extensión original del [Portal de Datos Abiertos del Ayuntamiento de Málaga](http://datosabiertos.malaga.eu) para la plataforma CKAN.
@@ -17,12 +17,12 @@ Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la mi
 
 - activamos entorno: source /usr/lib/ckan/default/bin/activate
 - accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
-- descargamos la extensión: git clone https://github.com/localidata/ckanext-malaga
-- accedemos al directorio donde se ha descargado: cd ckanext-malaga
+- descargamos la extensión: git clone https://github.com/localidata/federadorTNI
+- accedemos al directorio donde se ha descargado: cd ckanext-federadorNTI
 - instalamos la extensión: python setup.py develop
-- añadimos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
+- añadimos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
         
-        ckan.plugins = .... malaga
+        ckan.plugins = .... federadorNTI
 - creamos el directorio donde dejar el fichero para federar: mkdir /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
 - cambiamos el usuario del directorio: sudo chown www-data -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
 - cambiamos los permisos del mismo: sudo chmod u+rwx -R /usr/lib/ckan/default/src/ckan/ckan/public/recursos/
@@ -30,7 +30,7 @@ Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la mi
 Añadimos estas lineas de configuración en el archivo de configuración de CKAN:
 
 - ckan_mlg.federador_file = /usr/lib/ckan/default/src/ckan/ckan/public/recursos/federador.rdf
-- ckan_mlg.federador_template = /usr/lib/ckan/default/src/ckanext-malaga/ckanext/malaga/theme/local/plantillafederacion.rdf
+- ckan_mlg.federador_template = /usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/local/plantillafederacion.rdf
 - ckan_mlg.federador_process = generador
 - ckan_mlg.federador_spatialURI = http://spatialURI.com
 - ckan_mlg.federador_publisherURI = http://publisherURI.com
@@ -63,19 +63,19 @@ A continuación explicamos todos los parámetros que se utilizan en esta extensi
 
 Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso de tener muchos datos, puede tardar varios minutos en generarse y si se lanzan muchas peticiones podría ser problemático.
 
-### Actualización de ckanext-malaga
+### Actualización de ckanext-federadorNTI
 
 * activamos entorno: source /usr/lib/ckan/default/bin/activate
-* dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
+* dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: pip uninstall ckanext-federadorNTI
 * descargamos la extensión actualizada: git pull
 * instalamos la extensión de nuevo: python setup.py develop
 
 
-### Desinstalación de ckanext-malaga
+### Desinstalación de ckanext-federadorNTI
 
 * activamos entorno: source /usr/lib/ckan/default/bin/activate
-* dentro del directorio 'ckanext-malaga', lanzamos el comando: pip uninstall ckanext-malaga
-* borramos la extension 'malaga' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
+* dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: pip uninstall ckanext-federadorNTI
+* borramos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 
 
 ## Licencia:
