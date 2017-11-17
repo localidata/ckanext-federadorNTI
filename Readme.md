@@ -16,7 +16,7 @@ Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la mi
 
 - activamos entorno: source /usr/lib/ckan/default/bin/activate
 - accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
-- descargamos la extensión: git clone https://github.com/localidata/federadorTNI
+- descargamos la extensión: git clone https://github.com/localidata/ckanext-federadorNTI.git
 - accedemos al directorio donde se ha descargado: cd ckanext-federadorNTI
 - instalamos la extensión: python setup.py develop
 - añadimos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
