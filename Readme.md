@@ -19,6 +19,11 @@ Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la mi
 - descargamos la extensión: git clone https://github.com/localidata/ckanext-federadorNTI.git
 - accedemos al directorio donde se ha descargado: cd ckanext-federadorNTI
 - instalamos la extensión: python setup.py develop
+
+		En este punto a veces aparece este error:  [Errno 13] Permission denied: '/usr/lib/ckan/default/lib/python2.7/site-packages/test-easy-install-1482.write-test'
+		Esto ocurre porque se ha instalado CKAN como administrador, y hay que cambiar el propietario de este directorio '/usr/lib/ckan/default/lib/python2.7/site-packages'		
+		Lo arreglamos con el comando "sudo chown -R $USER /usr/lib/ckan/default/lib/python2.7/site-packages
+
 - añadimos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN ( /etc/ckan/default/production.ini). 
         
         ckan.plugins = .... federadorNTI
