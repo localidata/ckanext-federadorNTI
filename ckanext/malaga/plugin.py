@@ -152,8 +152,9 @@ class malagae(p.SingletonPlugin):
 
     def update_config(self, config):
         # add template directory that contains our snippet
-		p.toolkit.add_template_directory(config, '/usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/templates')
+		p.toolkit.add_template_directory(config, '/usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/templates')		                                          
 		p.toolkit.add_public_directory (config, '/usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/public')
+		                                        
 
     #iruiz: register helper function
     def get_helpers(self):

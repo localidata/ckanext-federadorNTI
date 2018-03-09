@@ -1,0 +1,127 @@
+<rdf:RDF xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcat="http://www.w3.org/ns/dcat#" xmlns:dct="http://purl.org/dc/terms/" xmlns:time="http://www.w3.org/2006/time#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:tema="http://datos.gob.es/kos/sector-publico/sector/">
+	<dcat:Catalog rdf:about="{{ g.site_url }}">
+		<dct:identifier>{{ g.site_url }}</dct:identifier>
+		<dct:title xml:lang="es">{{ g.site_title }}</dct:title>
+		<dct:description xml:lang="es">{{ g.site_description }}</dct:description>
+		<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230"/>		
+		<dct:extent>
+			<dct:SizeOrDuration>
+				<rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">{{h.mlg_fed_total_resources_size()}}</rdf:value>
+				<rdfs:label xml:lang="es">{{h.mlg_fed_total_resources_size()}} bytes</rdfs:label>
+			</dct:SizeOrDuration>
+		</dct:extent>
+		<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-04-30T16:44:15</dct:issued>
+		<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">{{ h.mlg_cur_datetime('') }}</dct:modified>
+		<dc:language>es</dc:language>
+		<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"></dct:spatial>
+		<dcat:themeTaxonomy rdf:resource="http://datos.gob.es/kos/sector-publico/sector/"></dcat:themeTaxonomy>
+		<foaf:homepage rdf:resource="{{ g.site_url }}"></foaf:homepage>
+		<dct:license rdf:resource="http://datosabiertos.rivasciudad.es/pages/aviso-legal"></dct:license>		
+		{% for ds_list in h.mlg_ds_list() %}
+			{% set ds =  h.mlg_ds_resources_list(ds_list) %}				
+			{% if ((ds['type']=='dataset') and (ds['private']==False)) %}		
+					<dcat:dataset>
+						<dcat:Dataset rdf:about="{{ h.url_for(controller='package',action='read',id=ds['name'], qualified=True)}}">
+							<dct:identifier>{{ h.url_for(controller='package',action='read',id=ds['name'], qualified=True)}}</dct:identifier>
+							<dct:title xml:lang="es">{{ds['title']}}</dct:title>
+							<dct:description xml:lang="es">{{ds['notes'].replace('\n','').replace('\r',' ')}}</dct:description>
+							{% for dato in ds['groups'] %}<dcat:theme rdf:resource="http://datos.gob.es/kos/sector-publico/sector/{{ dato['name'] }}"></dcat:theme>
+							{% endfor %}
+							{% for dato in ds['tags'] %}<dcat:keyword>{{ dato["name"] }}</dcat:keyword>
+							{% endfor %}							
+							<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{{ds['metadata_created'][:19]}}</dct:issued>
+							<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{{ds['metadata_modified'][:19]}}</dct:modified>
+							<dc:language>es</dc:language>
+							<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230"/>
+							{% if ds['license_url']|length > 0 %}
+							<dct:license rdf:resource="{{ds['license_url']}}"/>
+							{% endif %} 							
+							<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"/>
+							<dct:valid rdf:datatype="http://www.w3.org/2001/XMLSchema#date"/>
+							{% for rsc_dict in ds['resources'] %}
+								<dcat:distribution>
+									<dcat:Distribution>
+										<dct:identifier>{{ h.url_for(controller='package',action='read',id=ds['name'], qualified=True)}}/resource/{{rsc_dict['id']}}</dct:identifier>
+										<dct:title xml:lang="es">{{rsc_dict['name']}}</dct:title>
+										<dcat:accessURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">{{rsc_dict['url']}}</dcat:accessURL>
+										<dct:format>
+											{% if rsc_dict['format'].lower() == 'jsonld' %} <dct:IMT rdf:value="application/ld+json" rdfs:label="JSON-LD"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'geojson' %} <dct:IMT rdf:value="application/json" rdfs:label="GEOJSON"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'shp'%} <dct:IMT rdf:value="application/x-zipped-shp" rdfs:label="shp"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'pdf'%} <dct:IMT rdf:value="application/pdf" rdfs:label="PDF" ></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'csv'%} <dct:IMT rdf:value="text/csv" rdfs:label="CSV" ></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'xls'%} <dct:IMT rdf:value="application/vnd.ms-excel" rdfs:label="XLS"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rdf'%} <dct:IMT rdf:value="application/rdf+xml" rdfs:label="RDF"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'xml'%} <dct:IMT rdf:value="text/xml" rdfs:label="XML"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'json'%} <dct:IMT rdf:value="application/json" rdfs:label="JSON"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'ods'%} <dct:IMT rdf:value="application/vnd.oasis.opendocument.spreadsheet" rdfs:label="ods"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rss'%} <dct:IMT rdf:value="application/rss+xml" rdfs:label="rss"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'kml'%} <dct:IMT rdf:value="application/vnd.google-earth.kml+xml" rdfs:label="KML"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'ascii'%} <dct:IMT rdf:value="text/ascii" rdfs:label="ascii"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'atom'%} <dct:IMT rdf:value="application/atom+xml" rdfs:label="Atom"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'calendar'%} <dct:IMT rdf:value="text/calendar" rdfs:label="Calendar"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'dbf'%} <dct:IMT rdf:value="application/dbf" rdfs:label="DBF"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'dgn'%} <dct:IMT rdf:value="image/vnd.dgn" rdfs:label="DGN"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'djvu'%} <dct:IMT rdf:value="image/vnd.djvu" rdfs:label="DjVu"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'doc'%} <dct:IMT rdf:value="application/msword" rdfs:label="doc"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'dwg'%} <dct:IMT rdf:value="image/vnd.dwg" rdfs:label="dwg"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'dxf'%} <dct:IMT rdf:value="application/dxf" rdfs:label="dxf"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'ecw'%} <dct:IMT rdf:value="application/ecw" rdfs:label="ecw"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'gbd'%} <dct:IMT rdf:value="x-lml/x-gdb" rdfs:label="gbd"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'georss'%} <dct:IMT rdf:value="application/rss+xml" rdfs:label="georss"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'gml'%} <dct:IMT rdf:value="application/gml+xml" rdfs:label="gml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'gpx'%} <dct:IMT rdf:value="application/gpx+xml" rdfs:label="gpx"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'gzip'%} <dct:IMT rdf:value="application/gzip" rdfs:label="gzip"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'html'%} <dct:IMT rdf:value="text/html" rdfs:label="html"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'img'%} <dct:IMT rdf:value="application/img" rdfs:label="img"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'jpg'%} <dct:IMT rdf:value="image/jpeg" rdfs:label="jpg"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'kmz'%} <dct:IMT rdf:value="application/vnd.google-earth.kmz" rdfs:label="kmz"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'mdb'%} <dct:IMT rdf:value="application/msaccess" rdfs:label="mdb"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'mpp'%} <dct:IMT rdf:value="application/vmd.ms-project" rdfs:label="mpp"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'odp'%} <dct:IMT rdf:value="application/vnd.oasis.opendocument.presentation" rdfs:label="odp"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'odt'%} <dct:IMT rdf:value="application/vnd.oasis.opendocument.text" rdfs:label="odt"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'pc-axis'%} <dct:IMT rdf:value="text/pc-axis" rdfs:label="pc-axis"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'pgp'%} <dct:IMT rdf:value="application/pgp-signature" rdfs:label="pgp"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'plain'%} <dct:IMT rdf:value="text/plain" rdfs:label="plain"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'png'%} <dct:IMT rdf:value="image/png" rdfs:label="png"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'postscript'%} <dct:IMT rdf:value="application/postscript" rdfs:label="postscript"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'ppt'%} <dct:IMT rdf:value="application/vms.ms-powerpoint" rdfs:label="ppt"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'raster'%} <dct:IMT rdf:value="application/vnd.cups-raster" rdfs:label="raster"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rdf-n3'%} <dct:IMT rdf:value="text/n3" rdfs:label="rdf-n3"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rdf-turtle'%} <dct:IMT rdf:value="text/turtle" rdfs:label="rdf-turtle"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rdf-xml'%} <dct:IMT rdf:value="application/rdf+xml" rdfs:label="rdf-xml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'rtf'%} <dct:IMT rdf:value="text/rtf" rdfs:label="rtf"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'smil'%} <dct:IMT rdf:value="application/smil+xml" rdfs:label="smil"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'soap'%} <dct:IMT rdf:value="application/soap+xml" rdfs:label="soap"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'solr'%} <dct:IMT rdf:value="application/solr" rdfs:label="solr"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'sparql'%} <dct:IMT rdf:value="application/sparql-query" rdfs:label="sparql"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'sparql-json'%} <dct:IMT rdf:value="application/sparql-results+json" rdfs:label="sparql-json"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'sparql-xml'%} <dct:IMT rdf:value="application/sparql-results+xml" rdfs:label="sparql-xml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'tiff'%} <dct:IMT rdf:value="image/tiff" rdfs:label="tiff"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'tsv'%} <dct:IMT rdf:value="text/tab-separated-values" rdfs:label="tsv"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'vcard-texto'%} <dct:IMT rdf:value="text/vcard" rdfs:label="vcard-texto"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'vcard-xml'%} <dct:IMT rdf:value="application/vcard+xml" rdfs:label="vcard-xml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'visio'%} <dct:IMT rdf:value="application/vnd.visio" rdfs:label="visio"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'voicexml'%} <dct:IMT rdf:value="application/voicexml+xml" rdfs:label="voicexml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'wcs'%} <dct:IMT rdf:value="text/wcs" rdfs:label="wcs"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'wfs'%} <dct:IMT rdf:value="text/wfs" rdfs:label="wfs"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'wms'%} <dct:IMT rdf:value="text/wms" rdfs:label="wms"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'xbrl'%} <dct:IMT rdf:value="application/xbrl" rdfs:label="xbrl"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'xhtml'%} <dct:IMT rdf:value="application/xhtml+xml" rdfs:label="xhtml"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'xlsx'%} <dct:IMT rdf:value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" rdfs:label="xlsx"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'zip'%} <dct:IMT rdf:value="application/zip" rdfs:label="zip"></dct:IMT>
+											{% else %}<dct:IMT  rdf:value="{{rsc_dict['mimetype']}}" rdfs:label="{{rsc_dict.get('format')}}"></dct:IMT>
+											{% endif %}
+										</dct:format>
+										{% if rsc_dict['size'] is not none %}
+											<dcat:byteSize rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">{{rsc_dict['size']}}</dcat:byteSize>
+										{% endif %}								
+								</dcat:Distribution>
+							</dcat:distribution>
+						{% endfor %}	
+						</dcat:Dataset>
+					</dcat:dataset>		
+			{% endif %}
+		{% endfor %}		
+	</dcat:Catalog>
+</rdf:RDF>
