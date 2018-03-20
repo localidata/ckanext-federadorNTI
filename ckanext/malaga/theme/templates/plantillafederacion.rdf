@@ -3,7 +3,7 @@
 		<dct:identifier>{{ g.site_url }}</dct:identifier>
 		<dct:title xml:lang="es">{{ g.site_title }}</dct:title>
 		<dct:description xml:lang="es">{{ g.site_description }}</dct:description>
-		<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230"/>		
+		<dct:publisher rdf:resource="{{h.mlg_publisher_URI()}}"/>		
 		<dct:extent>
 			<dct:SizeOrDuration>
 				<rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">{{h.mlg_fed_total_resources_size()}}</rdf:value>
@@ -13,10 +13,10 @@
 		<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-04-30T16:44:15</dct:issued>
 		<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">{{ h.mlg_cur_datetime('') }}</dct:modified>
 		<dc:language>es</dc:language>
-		<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"></dct:spatial>
+		<dct:spatial rdf:resource="{{h.mlg_spatial_URI()}}"></dct:spatial>
 		<dcat:themeTaxonomy rdf:resource="http://datos.gob.es/kos/sector-publico/sector/"></dcat:themeTaxonomy>
 		<foaf:homepage rdf:resource="{{ g.site_url }}"></foaf:homepage>
-		<dct:license rdf:resource="http://datosabiertos.rivasciudad.es/pages/aviso-legal"></dct:license>		
+		<dct:license rdf:resource="{{h.mlg_license_URI()}}"></dct:license>		
 		{% for ds_list in h.mlg_ds_list() %}
 			{% set ds =  h.mlg_ds_resources_list(ds_list) %}				
 			{% if ((ds['type']=='dataset') and (ds['private']==False)) %}		
@@ -32,11 +32,11 @@
 							<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{{ds['metadata_created'][:19]}}</dct:issued>
 							<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{{ds['metadata_modified'][:19]}}</dct:modified>
 							<dc:language>es</dc:language>
-							<dct:publisher rdf:resource="http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230"/>
+							<dct:publisher rdf:resource="{{h.mlg_publisher_URI()}}"/>
 							{% if ds['license_url']|length > 0 %}
 							<dct:license rdf:resource="{{ds['license_url']}}"/>
 							{% endif %} 							
-							<dct:spatial rdf:resource="http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid"/>
+							<dct:spatial rdf:resource="{{h.mlg_spatial_URI()}}"/>
 							<dct:valid rdf:datatype="http://www.w3.org/2001/XMLSchema#date"/>
 							{% for rsc_dict in ds['resources'] %}
 								<dcat:distribution>
