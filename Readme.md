@@ -34,7 +34,7 @@ Ha sido desarrollada para versiones 2.7 de CKAN, proximamente realizaremos la mi
 Añadimos estas lineas de configuración en el archivo de configuración de CKAN:
 
 - ckan_mlg.federador_file = /usr/lib/ckan/default/src/ckan/ckan/public/recursos/federador.rdf
-- ckan_mlg.federador_template = /usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/local/plantillafederacion.rdf
+- ckan_mlg.federador_template = plantillafederacion.rdf
 - ckan_mlg.federador_process = generador
 - ckan_mlg.federador_spatialURI = http://spatialURI.com
 - ckan_mlg.federador_publisherURI = http://publisherURI.com
@@ -56,7 +56,7 @@ Esta extensión funciona de la siguiente manera:
 A continuación explicamos todos los parámetros que se utilizan en esta extensión:
 
 - ckan_mlg.federador_file: fichero final que va contener toda la información para la federación. Se genera cada vez que se finaliza el proceso de federación. La ruta completa debe existir y tener permisos.
-- ckan_mlg.federador_template: ruta donde se encuentra la plantilla rdf para generar el RDF que se federará.
+- ckan_mlg.federador_template: nombre de la plantilla rdf para generar el RDF que se federará. **IMPORTANTE** Este fichero se debe encontrar en la ruta /usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/templates
 - ckan_mlg.federador_process: Url que utilizamos comenzar la generación del fichero. Si escribimos 'generador', la url será: http://datosabiertos.localidata.com/generador
 - ckan_mlg.federador_spatialURI: URI espacial que más se aproxima a nuestro municipio o residencia. Ejemplo: http://datos.gob.es/recurso/sector-publico/territorio/Provincia/Madrid
 - ckan_mlg.federador_publisherURI: URI de nuestro organismo. Ejemplo: http://datos.gob.es/recurso/sector-publico/org/Organismo/L01281230

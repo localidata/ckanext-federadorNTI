@@ -17,7 +17,7 @@ from ckan.lib.base import (request,
                            render,
                            BaseController,
                            model,
-                           abort, h, g, c)
+                           abort, h, c)
 
 
 class GenerarRDF(BaseController):
@@ -28,7 +28,8 @@ class GenerarRDF(BaseController):
 		import os
 		import sys
 		
-		datardf = render(template, loader_class=None)					
+			
+		datardf = render(template)
 		datardf = datardf.encode('utf-8')	
 		patron = re.compile(" lang=\"..\" ")  
 		datardf = patron.sub(" ",datardf)		
