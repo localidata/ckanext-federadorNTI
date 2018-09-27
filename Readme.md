@@ -10,7 +10,7 @@ En Localidata hemos modificado la extensión original del [Portal de Datos Abier
 
 Esta extensión actualmente sólo tiene la funcionalidad de Federación. 
 
-Ha sido desarrollada para versiones 2.5 de CKAN, proximamente realizaremos la migración a versiones superiores.
+Ha sido desarrollada para versiones 2.7 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
 #### Descarga y configuración de la extensión
 
@@ -70,6 +70,7 @@ Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso
 ### Actualización de ckanext-federadorNTI
 
 * activamos entorno: source /usr/lib/ckan/default/bin/activate
+* cd /usr/lib/ckan/default/src
 * dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: pip uninstall ckanext-federadorNTI
 * descargamos la extensión actualizada: git pull
 * instalamos la extensión de nuevo: python setup.py develop
@@ -78,6 +79,7 @@ Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso
 ### Desinstalación de ckanext-federadorNTI
 
 * activamos entorno: source /usr/lib/ckan/default/bin/activate
+* cd /usr/lib/ckan/default/src
 * dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: pip uninstall ckanext-federadorNTI
 * borramos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 
