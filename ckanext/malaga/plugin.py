@@ -127,29 +127,6 @@ class malagae(p.SingletonPlugin):
 
     p.implements(p.IRoutes, inherit=True)
 
-
-#iruiz: Redefinir before_map para
-# apl = nueva entrada en el menu, que se llama aplicaciones.
-# federador = los ficheros que se usan en la federacion
-
-# Redefine before_map:
-    def before_map(self, m):
-
-	import pylons.config as config 
-
-
-# Redefine before_map: URL /local/generador execute GenerarRDF and generate rdf file used on datos.gob.es federacion
-	federador_fname = config['ckan_mlg.federador_file']             #rdf filename (include path)
-	federador_template = config['ckan_mlg.federador_template']      #loading rdf template filename (include path)
-	federador_process = config['ckan_mlg.federador_process']        #federador process
-
-	m.connect(federador_process, #name of path route
-	'/'+federador_process, #url to map path to
-	controller='ckanext.malaga.generadorrdf:GenerarRDF', #controller
-	action='generar',fname=federador_fname, template=federador_template) #controller
-
-	return m
-
     def update_config(self, config):
         # add template directory that contains our snippet
 		p.toolkit.add_template_directory(config, '/usr/lib/ckan/default/src/ckanext-federadorNTI/ckanext/malaga/theme/templates')		                                          
