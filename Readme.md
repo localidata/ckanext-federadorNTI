@@ -16,7 +16,7 @@ Ha sido desarrollada para versiones 2.7 de CKAN, proximamente realizaremos la mi
 
 - activamos entorno: source /usr/lib/ckan/default/bin/activate
 - accedemos al directorio de CKAN: cd /usr/lib/ckan/default/src
-- descargamos la extensión: git clone https://github.com/localidata/ckanext-federadorNTI.git
+- descargamos la extensión: git clone -b errorImportG https://github.com/localidata/ckanext-federadorNTI.git
 - accedemos al directorio donde se ha descargado: cd ckanext-federadorNTI
 - instalamos la extensión: python setup.py develop
 
@@ -80,7 +80,7 @@ Es importante no dejar expuesta la URL que lanza la generación del RDF. En caso
 
 * activamos entorno: source /usr/lib/ckan/default/bin/activate
 * cd /usr/lib/ckan/default/src
-* dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: pip uninstall ckanext-federadorNTI
+* dentro del directorio 'ckanext-federadorNTI', lanzamos el comando: python setup.py develop --uninstall
 * borramos la extension 'federadorNTI' dentro de la sección ckan.plugins en el archivo de configuración de CKAN
 
 
