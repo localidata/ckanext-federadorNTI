@@ -75,6 +75,7 @@
 											{% elif  rsc_dict['format'].lower() == 'html'%} <dct:IMT rdf:value="text/html" rdfs:label="html"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'img'%} <dct:IMT rdf:value="application/img" rdfs:label="img"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'jpg'%} <dct:IMT rdf:value="image/jpeg" rdfs:label="jpg"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'jpeg'%} <dct:IMT rdf:value="image/jpeg" rdfs:label="jpg"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'kmz'%} <dct:IMT rdf:value="application/vnd.google-earth.kmz" rdfs:label="kmz"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'mdb'%} <dct:IMT rdf:value="application/msaccess" rdfs:label="mdb"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'mpp'%} <dct:IMT rdf:value="application/vmd.ms-project" rdfs:label="mpp"></dct:IMT>

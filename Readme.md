@@ -2,7 +2,7 @@
 
 
 ckanext-federadorNTI
-==============
+============== 
 
 En Localidata hemos modificado la extensión original del [Portal de Datos Abiertos del Ayuntamiento de Málaga](http://datosabiertos.malaga.eu) para la plataforma CKAN.
 
