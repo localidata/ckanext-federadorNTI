@@ -10,7 +10,7 @@ En Localidata hemos modificado la extensión original del [Portal de Datos Abier
 
 Esta extensión actualmente sólo tiene la funcionalidad de Federación. 
 
-Ha sido desarrollada para versiones 2.7 de CKAN, proximamente realizaremos la migración a versiones superiores.
+Ha sido desarrollada para la version 2.7 de CKAN, proximamente realizaremos la migración a versiones superiores.
 
 #### Descarga y configuración de la extensión
 
@@ -62,7 +62,7 @@ Un buen truco es tener un script parecido a este:
 
 Con este script descargamos el contenido que se genera al ejecutar la plantilla en una ruta física dentro del propio plugin.
 
-Se puede acceder al RDF generado con esta URL: https://nuestroCKAN/federacion.rdf
+Se puede acceder al RDF generado con esta URL: http://nuestroCKAN/federacion.rdf
 		
 ### Actualización de ckanext-federadorNTI
 
