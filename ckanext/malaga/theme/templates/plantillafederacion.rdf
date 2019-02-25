@@ -46,7 +46,7 @@
 										<dcat:accessURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">{{rsc_dict['url']}}</dcat:accessURL>
 										<dct:format>
 											{% if rsc_dict['format'].lower() == 'jsonld' %} <dct:IMT rdf:value="application/ld+json" rdfs:label="JSON-LD"></dct:IMT>
-											{% elif  rsc_dict['format'].lower() == 'geojson' %} <dct:IMT rdf:value="application/json" rdfs:label="GEOJSON"></dct:IMT>
+											{% elif  rsc_dict['format'].lower() == 'geojson' %} <dct:IMT rdf:value="application/geo+json" rdfs:label="GEOJSON"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'shp'%} <dct:IMT rdf:value="application/x-zipped-shp" rdfs:label="shp"></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'pdf'%} <dct:IMT rdf:value="application/pdf" rdfs:label="PDF" ></dct:IMT>
 											{% elif  rsc_dict['format'].lower() == 'csv'%} <dct:IMT rdf:value="text/csv" rdfs:label="CSV" ></dct:IMT>
